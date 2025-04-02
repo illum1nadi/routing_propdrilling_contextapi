@@ -6,7 +6,7 @@ import { Landing } from './components/Landing';
 //navigate cannot be used outside of a component of a browser router.
 
 function App() {
-  const navigate = useNavigate();
+  
 
   const router = [
     {
@@ -19,25 +19,13 @@ function App() {
     }
   ];
 
-  function handleClick() {
-    navigate('/');
-  };
-
-  function handleClick1() {
-    navigate('/Dashboard');
-  };
+  
 
   return (
     <>
-      <div>
-        <button onClick={() => {
-          handleClick();
-        }}>Landing Page</button>
-        <button onClick={() => {
-          handleClick1();
-        }}>Dashboard</button>
-      </div>
+      
       <BrowserRouter>
+      <Appbar></Appbar>
         <Routes>
           {router.map((route, index) => (
             <Route 
@@ -51,6 +39,28 @@ function App() {
     </>
     
   );
+}
+
+function Appbar() {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate('/');
+  };
+
+  function handleClick1() {
+    navigate('/Dashboard');
+  };
+
+  return (<div>
+    <button onClick={() => {
+      handleClick();
+    }}>Landing Page</button>
+    <button onClick={() => {
+      handleClick1();
+    }}>Dashboard</button>
+  </div>
+  )
 }
 
 export default App;

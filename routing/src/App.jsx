@@ -15,17 +15,23 @@ function App() {
   ];
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {router.map((route, index) => (
-          <Route 
-            key={index} 
-            path={route.route} 
-            element={<route.component />} 
-          />
-        ))}
-      </Routes>
-    </BrowserRouter>
+    <>
+      <div>
+        Hi hello.
+      </div>
+      <BrowserRouter>
+        <Routes>
+          {router.map((route, index) => (
+            <Route 
+              key={index} 
+              path={route.route} 
+              element={<route.component />} 
+            />
+          ))}
+        </Routes>
+      </BrowserRouter>
+    </>
+    
   );
 }
 

@@ -5,11 +5,11 @@ import { Landing } from './components/Landing';
 function App() {
   const router = [
     {
-      route: "/",
+      route: "/Dashboard",
       component: Dashboard
     },
     {
-      route: "/dashboard",
+      route: "/",
       component: Landing
     }
   ];
@@ -17,7 +17,12 @@ function App() {
   return (
     <>
       <div>
-        Hi hello.
+        <button onClick={() => {
+          window.location.href = "/"
+        }}>Landing Page</button>
+        <button onClick={() => {
+          window.location.href = "/Dashboard"
+        }}>Dashboard</button>
       </div>
       <BrowserRouter>
         <Routes>

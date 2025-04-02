@@ -1,15 +1,10 @@
 import React from 'react';
-import{ BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-const Dashboard = React.lazy(() => import("./components/Dashboard"))
-const Landing = React.lazy(() => import("./components/Landing"))
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
-
-
-//navigate cannot be used outside of a component of a browser router.
+const Dashboard = React.lazy(() => import("./components/Dashboard"));
+const Landing = React.lazy(() => import("./components/Landing"));
 
 function App() {
-  
-
   const router = [
     {
       route: "/Dashboard",
@@ -21,13 +16,10 @@ function App() {
     }
   ];
 
-  
-
   return (
-    <>
-      
-      <BrowserRouter>
-      <Appbar></Appbar>
+    <BrowserRouter>
+      <Appbar />
+      <React.Suspense fallback={<div>Loading...</div>}>
         <Routes>
           {router.map((route, index) => (
             <Route 
@@ -37,9 +29,8 @@ function App() {
             />
           ))}
         </Routes>
-      </BrowserRouter>
-    </>
-    
+      </React.Suspense>
+    </BrowserRouter>
   );
 }
 
@@ -48,21 +39,18 @@ function Appbar() {
 
   function handleClick() {
     navigate('/');
-  };
+  }
 
   function handleClick1() {
     navigate('/Dashboard');
-  };
+  }
 
-  return (<div>
-    <button onClick={() => {
-      handleClick();
-    }}>Landing Page</button>
-    <button onClick={() => {
-      handleClick1();
-    }}>Dashboard</button>
-  </div>
-  )
+  return (
+    <div>
+      <button onClick={handleClick}>Landing Page</button>
+      <button onClick={handleClick1}>Dashboard</button>
+    </div>
+  );
 }
 
 export default App;

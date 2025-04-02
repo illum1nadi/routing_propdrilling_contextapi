@@ -1,8 +1,13 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
 import { Landing } from './components/Landing';
 
+
+//navigate cannot be used outside of a component of a browser router.
+
 function App() {
+  const navigate = useNavigate();
+
   const router = [
     {
       route: "/Dashboard",
@@ -14,14 +19,22 @@ function App() {
     }
   ];
 
+  function handleClick() {
+    navigate('/');
+  };
+
+  function handleClick1() {
+    navigate('/Dashboard');
+  };
+
   return (
     <>
       <div>
         <button onClick={() => {
-          window.location.href = "/"
+          handleClick();
         }}>Landing Page</button>
         <button onClick={() => {
-          window.location.href = "/Dashboard"
+          handleClick1();
         }}>Dashboard</button>
       </div>
       <BrowserRouter>

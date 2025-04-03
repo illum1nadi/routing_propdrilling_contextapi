@@ -1,13 +1,11 @@
 import React, { useContext, useState, createContext } from 'react';
 
-// Create the context with an initial value (optional)
-const CountContext = createContext();
+const CountContext = createContext(0);
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    // Wrap the components that need access to count and setCount
     <CountContext.Provider value={{ count, setCount }}>
       <Count />
     </CountContext.Provider>
@@ -15,18 +13,26 @@ function App() {
 }
 
 function Count() {
-  // Get count from the context
-  const { count } = useContext(CountContext);
+  console.log("count re rendered.")
   return (
     <div>
-      {count}
+      <CountRenderer></CountRenderer>
       <Buttons />
     </div>
   );
 }
 
+function CountRenderer() {
+  const { count } = useContext(CountContext);
+  return (
+    <div>
+      {count}
+    </div>
+  )
+}
+
 function Buttons() {
-  // Get count and setCount from the context
+
   const { count, setCount } = useContext(CountContext);
   return (
     <div>

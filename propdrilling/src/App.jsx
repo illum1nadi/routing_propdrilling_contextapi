@@ -1,15 +1,27 @@
 import React, { useContext, useState, createContext } from 'react';
 import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { countAtom } from './store/atoms/count';
+import { countAtom, evenSelector } from './store/atoms/count';
 
 
 function App() {
+  const [ct, setCt] = useState(0);
 
   return (
-    <RecoilRoot>
-      <Count />
-    </RecoilRoot>
+    <div>
+      <RecoilRoot>
+        <Count />
+      </RecoilRoot>
+      <DisplayCt ct = {ct} setCt = {setCt}></DisplayCt>
+    </div>
+
   );
+}
+
+
+function DisplayCt({ct, setCt}) {
+  return(
+    <button onClick={() => setCt((ct) => (ct + 1))}>{ct}</button>
+  ) 
 }
 
 function Count() {
@@ -18,8 +30,18 @@ function Count() {
     <div>
       <CountRenderer></CountRenderer>
       <Buttons />
+      <IsEven></IsEven>
     </div>
   );
+}
+
+function IsEven() {
+  const count = useRecoilValue(evenSelector);
+  return (
+    <>
+      {count ? "It is even" : null}
+    </>
+  )
 }
 
 function CountRenderer() {
